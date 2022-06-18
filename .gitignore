@@ -6,3 +6,5 @@
 *.cnf
 *.png
 .idea
+*.json
+go.sum

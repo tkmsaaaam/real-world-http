@@ -3,6 +3,9 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"github.com/skratchdot/open-golang/open"
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/github"
 	"io"
 	"net/http"
 	"os"
@@ -11,7 +14,7 @@ import (
 var clientID = ""
 var clientSecret = ""
 var redirectURL = "http://localhost:18888"
-var state = ""
+var state = "your state"
 
 func main() {
 	conf := &oauth2.Config{
