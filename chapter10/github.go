@@ -3,10 +3,12 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/skratchdot/open-golang/open"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/github"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 )
@@ -57,4 +59,15 @@ func main() {
 		panic(err)
 	}
 	client := oauth2.NewClient(oauth2.NoContext, conf.TokenSource(oauth2.NoContext, token))
+
+	resp, err := client.Get("https://api.github.com/user/emails")
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+	emails, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(emails))
 }
