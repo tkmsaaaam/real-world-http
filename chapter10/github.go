@@ -13,8 +13,8 @@ import (
 	"os"
 )
 
-var clientID = ""
-var clientSecret = ""
+var clientID = os.Args[1]
+var clientSecret = os.Args[2]
 var redirectURL = "http://localhost:18888"
 var state = "your state"
 
